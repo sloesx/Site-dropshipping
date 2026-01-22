@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Inscription</title>
+  <link rel="stylesheet" href="/templates/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/qui-sommes-nous.html">Association Solidaire</a>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="navbar-nav">
+                <a class="nav-link active" href="index.html">Accueil</a> 
+                <a class="nav-link" href="articles.html">Nos Produits</a> 
+                <a class="nav-link" href="equipe.html">Qui sommes-nous ?</a> 
+                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="inscription.html">Inscription</a>
+            </div>
+        </div>
+    </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Inscription</h1>
+      <p class="lead">
+        Rejoignez notre communauté solidaire et participez à nos actions humanitaires.
+      </p>
+      <p class="muted">
+        En vous inscrivant, vous soutenez nos projets et vous contribuez activement à aider
+        les personnes dans le besoin. L'inscription est rapide et gratuite.
+      </p>
+
+      <form id="signupForm" class="form" novalidate>
+        <div class="grid">
+          <div class="field">
+            <label for="email">Adresse e-mail</label>
+            <input id="email" name="email" type="email" placeholder="ex. nom@domaine.com" required />
+            <small class="error" data-error-for="email"></small>
+          </div>
+
+          <div class="field">
+            <label for="country">Pays</label>
+            <input id="country" name="country" type="text" placeholder="France" required />
+            <small class="error" data-error-for="country"></small>
+          </div>
+
+          <div class="field">
+            <label for="password">Mot de passe</label>
+            <input id="password" name="password" type="password" placeholder="Créez un mot de passe" minlength="8" required />
+            <small class="hint">Au moins 8 caractères.</small>
+            <small class="error" data-error-for="password"></small>
+          </div>
+
+          <div class="field">
+            <label for="confirm">Confirmer le mot de passe</label>
+            <input id="confirm" name="confirm" type="password" placeholder="Confirmez le mot de passe" minlength="8" required />
+            <small class="error" data-error-for="confirm"></small>
+          </div>
+
+          <div class="field">
+            <label for="postal">Code postal</label>
+            <input id="postal" name="postal" type="text" inputmode="numeric" placeholder="54000" required />
+            <small class="error" data-error-for="postal"></small>
+          </div>
+
+          <div class="field">
+            <label for="city">Ville</label>
+            <input id="city" name="city" type="text" placeholder="Nancy" required />
+            <small class="error" data-error-for="city"></small>
+          </div>
+        </div>
+
+        <div class="field checkbox">
+          <input id="terms" name="terms" type="checkbox" required />
+          <label for="terms">
+            J'accepte les conditions générales et la politique de confidentialité
+          </label>
+        </div>
+        <small class="error" data-error-for="terms"></small>
+        <br>
+        <button class="btn" type="submit">S'inscrire</button>
+
+        <p class="muted small">
+          Vos informations personnelles sont protégées et utilisées uniquement dans le cadre de nos actions associatives.
+        </p>
+
+        <div id="successBox" class="success" hidden>
+          ✅ Inscription envoyée (démo). Tu peux maintenant connecter ce formulaire à un backend.
+          
+        </div>
+      </form>
+    </section>
+  </main>
+    
+ <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span>  - The Pump Room</small>
+    </div>
+  <script src="/templates/script.js"></script>
+</body>
+</html>
