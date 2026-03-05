@@ -11,13 +11,13 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="index.html">The Pump Room</a>
+            <a class="navbar-brand" href="index.php">The Pump Room</a>
             <div class="navbar-nav">
-                <a class="nav-link" href="index.html">Accueil</a> 
-                <a class="nav-link" href="articles.html">Nos Produits</a> 
-                <a class="nav-link active" href="equipe.html">Qui sommes-nous ?</a> 
-                <a class="nav-link" href="contact.html">Contact</a>
-                <a class="nav-link" href="inscription.html">Inscription</a>
+                <a class="nav-link" href="index.php">Accueil</a> 
+                <a class="nav-link" href="articles.php">Nos Produits</a> 
+                <a class="nav-link active" href="equipe.php">Qui sommes-nous ?</a> 
+                <a class="nav-link" href="contact.php">Contact</a>
+                <a class="nav-link" href="inscription.php">Inscription</a>
             </div>
         </div>
     </nav>
@@ -61,9 +61,7 @@
         </div>
     </main>
 
-    <footer class="bg-dark text-white text-center py-3 pied-de-page">
-        <p>&copy; 2026 - The Pump Room</p>
-    </footer>
+    <?php include('footer.php'); ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

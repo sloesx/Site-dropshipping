@@ -24,7 +24,7 @@
 
     <header class="entete-page bg-light p-5 text-center">
         <h1 class="titre-principal">Notre Catalogue</h1>
-        <p class="sous-titre">Retrouvez tous nos équipements et compléments pour votre progression.</p>
+        <p class="sous-titre">Retrouvez tous nos équipements ainsi que des compléments pour votre progression.</p>
     </header>
 
     <main class="container contenu-page my-5">
