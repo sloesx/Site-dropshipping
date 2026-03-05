@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Pump Room - Accueil</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.php">The Pump Room</a>
-            <div class="navbar-nav">
-                <a class="nav-link active" href="index.php">Accueil</a> 
-                <a class="nav-link" href="articles.php">Nos Produits</a> 
-                <a class="nav-link" href="equipe.php">Qui sommes-nous ?</a> 
-                <a class="nav-link" href="contact.php">Contact</a>
-                <a class="nav-link" href="inscription.php">Inscription</a>
-            </div>
-        </div>
-    </nav>
+<?php include('header.php'); ?>
 
     <header class="bg-light p-5 text-center">
         <h1>Bienvenue sur The Pump Room</h1>
@@ -33,7 +11,7 @@
             
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <img src="../src/prot.jpg" class="card-img-top" alt="Produit 1">
+                    <img src="src/prot.jpg" class="card-img-top" alt="Produit 1">
                     <div class="card-body">
                         <h5 class="card-title">Whey Protein Isolate (2kg)</h5>
                         <p class="card-text">Boostez votre concentration et votre endurance avec cette formule enrichie en caféine et bêta-alanine pour des entraînements sans limite.</p>
@@ -44,7 +22,7 @@
 
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <img src="../src/preworkout.jpg" class="card-img-top" alt="Produit 2">
+                    <img src="src/preworkout.jpg" class="card-img-top" alt="Produit 2">
                     <div class="card-body">
                         <h5 class="card-title">Pre-Workout "Explosive Energy"</h5>
                         <p class="card-text">Boostez votre concentration et votre endurance avec cette formule enrichie en caféine et bêta-alanine pour des entraînements sans limite.</p>
@@ -55,7 +33,7 @@
 
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <img src="../src/halteres.webp" class="card-img-top" alt="Produit 3">
+                    <img src="src/halteres.webp" class="card-img-top" alt="Produit 3">
                     <div class="card-body">
                         <h5 class="card-title">Haltères Réglables (24kg)</h5>
                         <p class="card-text">Gagnez de la place avec ce système d'haltères innovant permettant de varier la charge de 2,5 à 24 kg en un seul clic.</p>
@@ -66,5 +44,4 @@
         </div>
     </main>
 
-    <?php include('footer.php'); ?>
-    
+<?php include('footer.php'); ?>
