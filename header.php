@@ -1,3 +1,6 @@
+<?php
+$page_en_cours = basename($_SERVER['PHP_SELF']);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,11 +15,11 @@
         <div class="container">
             <a class="navbar-brand logo-site" href="index.php">The Pump Room</a>
             <div class="navbar-nav liens-menu">
-                <a class="nav-link" href="index.php">Accueil</a> 
-                <a class="nav-link" href="articles.php">Nos Produits</a> 
-                <a class="nav-link" href="equipe.php">Qui sommes-nous ?</a> 
-                <a class="nav-link" href="contact.php">Contact</a>
-                <a class="nav-link" href="inscription.php">Inscription</a>
+                <a class="nav-link <?php if($page_en_cours == 'index.php') { echo 'active'; } ?>" href="index.php">Accueil</a> 
+                <a class="nav-link <?php if($page_en_cours == 'articles.php') { echo 'active'; } ?>" href="articles.php">Nos Produits</a> 
+                <a class="nav-link <?php if($page_en_cours == 'equipe.php') { echo 'active'; } ?>" href="equipe.php">Qui sommes-nous ?</a> 
+                <a class="nav-link <?php if($page_en_cours == 'contact.php') { echo 'active'; } ?>" href="contact.php">Contact</a>
+                <a class="nav-link <?php if($page_en_cours == 'inscription.php') { echo 'active'; } ?>" href="inscription.php">Inscription</a>
             </div>
         </div>
     </nav>
