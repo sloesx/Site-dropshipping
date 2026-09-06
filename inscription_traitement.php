@@ -20,11 +20,19 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "ecom";
-
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT client_email FROM Clients WHERE client_email = ?"; 
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    die("Adresse email déjà utilisée");
 }
 
 $sql = "INSERT INTO Clients (client_nom, client_prenom, client_email, client_mot_de_passe, client_adresse_livraison, client_complement_adresse, client_code_postal, client_ville,
@@ -35,4 +43,4 @@ $stmt->execute();
 $stmt->close();
 $conn->close(); 
 ?>
-<p>Bienvenue, <?php echo $prenom; ?>. Inscription confirmée! </p>
+<p>Bienvenue, <?php echo htmlspecialchars($prenom); ?>. Inscription confirmée! </p>

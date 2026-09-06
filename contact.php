@@ -32,6 +32,7 @@
 
                             <div class="mb-3">
                                 <label for="message" class="form-label etiquette-champ">Votre Message</label>
+                                <textarea required class="form-control champ-saisie" name="message" id="message" rows="5" placeholder="Écrivez votre message ici..."></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary bouton-envoyer w-100">Envoyer le message</button>
