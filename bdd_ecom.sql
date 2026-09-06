@@ -16,10 +16,12 @@
 
 
 -- Listage de la structure de la base pour ecom
+DROP DATABASE IF EXISTS `ecom`;
 CREATE DATABASE IF NOT EXISTS `ecom` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `ecom`;
 
 -- Listage de la structure de table ecom. articles
+DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
   `article_ref` int NOT NULL AUTO_INCREMENT,
   `article_marque` varchar(50) DEFAULT NULL,
@@ -76,6 +78,7 @@ INSERT INTO `articles` (`article_ref`, `article_marque`, `article_nom`, `article
 	(34, 'Eleiko', 'Sandbag Strongman (Jusqu\'à 50kg)', 'Sac de sable renforcé pour l\'entraînement fonctionnel et le Strongman. Vendu vide.', 75.00, 1.50, 30, 'src/sandbag.webp', 5, 8);
 
 -- Listage de la structure de table ecom. categories
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `categorie_id` int NOT NULL AUTO_INCREMENT,
   `categorie_nom` varchar(50) NOT NULL,
@@ -93,6 +96,7 @@ INSERT INTO `categories` (`categorie_id`, `categorie_nom`, `categorie_descriptio
 	(5, 'Force et Endurance', 'Matériel spécifique pour le Powerlifting et le Strongman, conçu pour résister aux charges les plus lourdes.');
 
 -- Listage de la structure de table ecom. clients
+DROP TABLE IF EXISTS `clients`;
 CREATE TABLE IF NOT EXISTS `clients` (
   `client_id` int NOT NULL AUTO_INCREMENT,
   `client_nom` varchar(50) NOT NULL,
@@ -107,15 +111,17 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `client_telephone` varchar(20) NOT NULL,
   PRIMARY KEY (`client_id`),
   UNIQUE KEY `client_email` (`client_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table ecom.clients : ~2 rows (environ)
 INSERT INTO `clients` (`client_id`, `client_nom`, `client_prenom`, `client_email`, `client_adresse_livraison`, `client_complement_adresse`, `client_code_postal`, `client_ville`, `client_pays`, `client_mot_de_passe`, `client_telephone`) VALUES
 	(1, 'm', 'e', 'e@gmail.com', 'qzdqzdqzd', '2', '54520', 'e', 'France', '3f79bb7b435b05321651daefd374cdc681dc06faa65e374e38337b88ca046dea', '0773853186'),
 	(4, 'm', 'e', 't@gmail.com', 'qzdqzdqzd', '2', '54520', 'e', 'France', 'e3b98a4da31a127d4bde6e43033f66ba274cab0eb7eb1c70ec41402bf6273dd8', '0773853186'),
-	(6, 'Eloy', 'e', 'et@gmail.com', 'qzdqzdqzd', '2', '54520', 'e', 'France', '0e07cf830957701d43c183f1515f63e6b68027e528f43ef52b1527a520ddec82', '0773853186');
+	(6, 'Eloy', 'e', 'et@gmail.com', 'qzdqzdqzd', '2', '54520', 'e', 'France', '0e07cf830957701d43c183f1515f63e6b68027e528f43ef52b1527a520ddec82', '0773853186'),
+	(10, 'Eloy', 'e', '4@gmail.com', 'qzdqzdqzd', '2', '54520', 'e', 'Belgique', '0264e87b857d65dec65fb3b8cd36e3a98948ff9dc56d1bc95485e72d57c88168', '0773853186');
 
 -- Listage de la structure de table ecom. commandes
+DROP TABLE IF EXISTS `commandes`;
 CREATE TABLE IF NOT EXISTS `commandes` (
   `commande_numero` int NOT NULL AUTO_INCREMENT,
   `commande_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -130,6 +136,7 @@ CREATE TABLE IF NOT EXISTS `commandes` (
 -- Listage des données de la table ecom.commandes : ~0 rows (environ)
 
 -- Listage de la structure de table ecom. contient
+DROP TABLE IF EXISTS `contient`;
 CREATE TABLE IF NOT EXISTS `contient` (
   `id_commande` int NOT NULL,
   `id_article` int NOT NULL,
@@ -143,6 +150,7 @@ CREATE TABLE IF NOT EXISTS `contient` (
 -- Listage des données de la table ecom.contient : ~0 rows (environ)
 
 -- Listage de la structure de table ecom. fournisseurs
+DROP TABLE IF EXISTS `fournisseurs`;
 CREATE TABLE IF NOT EXISTS `fournisseurs` (
   `fournisseur_id` int NOT NULL AUTO_INCREMENT,
   `fournisseur_societe` varchar(50) NOT NULL,
