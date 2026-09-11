@@ -20,6 +20,8 @@ $page_en_cours = basename($_SERVER['PHP_SELF']);
                 <a class="nav-link <?php if($page_en_cours == 'equipe.php') { echo 'active'; } ?>" href="equipe.php">Qui sommes-nous ?</a> 
                 <a class="nav-link <?php if($page_en_cours == 'contact.php') { echo 'active'; } ?>" href="contact.php">Contact</a>
                 <a class="nav-link <?php if($page_en_cours == 'inscription.php') { echo 'active'; } ?>" href="inscription.php">Inscription</a>
+                <a class="nav-link <?php if($page_en_cours == 'connexion.php') { echo 'active'; } ?>" href="connexion.php">Connexion</a>
+                <a class="nav-link <?php if($page_en_cours == 'deconnexion.php') { echo 'active'; } ?>" href="deconnexion.php">Déconnexion</a>
             </div>
         </div>
     </nav>
