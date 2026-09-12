@@ -7,6 +7,14 @@
             <div class="col-md-8">
                 <div class="card carte-formulaire shadow-sm">
                     <div class="card-body corps-carte p-4">
+                        <?php if(isset($_SESSION['erreur'])) { ?>
+                            <div class="alert alert-danger text-center mb-3">
+                                <?php 
+                                echo $_SESSION['erreur']; 
+                                unset($_SESSION['erreur']); 
+                                ?>
+                            </div>
+                        <?php } ?>
                         <form action="connexion_traitement.php" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label etiquette-champ">Email :</label>

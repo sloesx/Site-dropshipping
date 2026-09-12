@@ -7,9 +7,16 @@
                         <h2 class="h4 mb-0 text-center">Créer un compte</h2>
                     </div>
                     <div class="card-body p-4">
-                        
+                        <div class="card-body p-4">
+                            <?php if(isset($_SESSION['erreur'])) { ?>
+                                <div class="alert alert-danger text-center mb-3">
+                                    <?php 
+                                    echo $_SESSION['erreur']; 
+                                    unset($_SESSION['erreur']); 
+                                    ?>
+                                </div>
+                            <?php } ?>
                         <form action="inscription_traitement.php" method="post">
-                            
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="nom" class="form-label">Nom</label>
