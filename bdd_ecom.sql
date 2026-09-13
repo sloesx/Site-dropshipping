@@ -14,12 +14,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Listage de la structure de la base pour ecom
-DROP DATABASE IF EXISTS `ecom`;
-CREATE DATABASE IF NOT EXISTS `ecom` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `ecom`;
-
 -- Listage de la structure de table ecom. articles
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
@@ -38,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   KEY `id_fournisseur` (`id_fournisseur`),
   CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categories` (`categorie_id`),
   CONSTRAINT `articles_ibfk_2` FOREIGN KEY (`id_fournisseur`) REFERENCES `fournisseurs` (`fournisseur_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Listage des données de la table ecom.articles : ~34 rows (environ)
 INSERT INTO `articles` (`article_ref`, `article_marque`, `article_nom`, `article_description`, `article_prix_unitaire_HT`, `article_poids`, `article_stock`, `article_img`, `id_categorie`, `id_fournisseur`) VALUES
@@ -85,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `categorie_description` text,
   PRIMARY KEY (`categorie_id`),
   UNIQUE KEY `categorie_nom` (`categorie_nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Listage des données de la table ecom.categories : ~5 rows (environ)
 INSERT INTO `categories` (`categorie_id`, `categorie_nom`, `categorie_description`) VALUES
@@ -111,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `client_telephone` varchar(20) NOT NULL,
   PRIMARY KEY (`client_id`),
   UNIQUE KEY `client_email` (`client_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Listage des données de la table ecom.clients : ~2 rows (environ)
 INSERT INTO `clients` (`client_id`, `client_nom`, `client_prenom`, `client_email`, `client_adresse_livraison`, `client_complement_adresse`, `client_code_postal`, `client_ville`, `client_pays`, `client_mot_de_passe`, `client_telephone`) VALUES
@@ -131,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `commandes` (
   PRIMARY KEY (`commande_numero`),
   KEY `id_client` (`id_client`),
   CONSTRAINT `commandes_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `clients` (`client_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Listage des données de la table ecom.commandes : ~0 rows (environ)
 
@@ -145,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `contient` (
   KEY `id_article` (`id_article`),
   CONSTRAINT `contient_ibfk_1` FOREIGN KEY (`id_commande`) REFERENCES `commandes` (`commande_numero`),
   CONSTRAINT `contient_ibfk_2` FOREIGN KEY (`id_article`) REFERENCES `articles` (`article_ref`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Listage des données de la table ecom.contient : ~0 rows (environ)
 
@@ -156,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `fournisseurs` (
   `fournisseur_societe` varchar(50) NOT NULL,
   `fournisseur_telephone` varchar(20) NOT NULL,
   PRIMARY KEY (`fournisseur_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Listage des données de la table ecom.fournisseurs : ~10 rows (environ)
 INSERT INTO `fournisseurs` (`fournisseur_id`, `fournisseur_societe`, `fournisseur_telephone`) VALUES
