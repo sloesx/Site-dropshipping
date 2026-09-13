@@ -17,7 +17,6 @@
         <p>Le spécialiste de la musculation - Qualité et service garantis.</p>
     </header>
     <main class="container my-5">
-        <main class="container my-5">
             <?php if(isset($_SESSION['succes'])) { ?>
                 <div class="alert alert-success text-center mb-4 shadow-sm">
                     <?php 
