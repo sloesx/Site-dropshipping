@@ -1,5 +1,4 @@
 <?php include('header.php'); ?>
-
     <main class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-md-8"> <div class="card shadow-sm">
@@ -37,7 +36,6 @@
                                     <input required type="tel" class="form-control" name="telephone" id="telephone" placeholder="06 XX XX XX XX">
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="mdp" class="form-label">Mot de passe</label>
@@ -47,9 +45,7 @@
                                     <input required type="password" class="form-control" name="verif_mdp" id="verif_mdp">
                                 </div>
                             </div>
-
                             <hr class="my-4"> <h5 class="mb-3">Adresse de livraison</h5>
-
                             <div class="mb-3">
                                 <label for="adresse_postale" class="form-label">Adresse complète</label>
                                 <input required type="text" class="form-control" id="adresse_postale" name="adresse_postale" placeholder="N° et nom de rue...">
@@ -58,7 +54,6 @@
                                 <label for="complement_adresse" class="form-label">Complément d'adresse (Facultatif)</label>
                                 <input type="text" class="form-control" id="complement_adresse" name="complement_adresse" placeholder="Bâtiment, étage, lieu-dit...">
                             </div>
-
                             <div class="row">
                                 <div class="col-md-3 mb-3">
                                     <label for="code_postal" class="form-label">Code Postal</label>
@@ -77,12 +72,10 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="mb-3 form-check mt-3">
                                 <input required type="checkbox" class="form-check-input" id="cgu_check">
                                 <label class="form-check-label" for="cgu_check">J'accepte les conditions générales</label>
                             </div>
-
                             <button type="submit" class="btn btn-primary w-100">Valider l'inscription</button>
                         </form>
 
@@ -91,5 +84,4 @@
             </div>
         </div>
     </main>
-
 <?php include('footer.php'); ?>

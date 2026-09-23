@@ -44,7 +44,6 @@ $conn->close();
 $_SESSION['client_email'] = $email;
 $_SESSION['client_prenom'] = $prenom;
 $_SESSION['succes'] = "Bienvenue " . htmlspecialchars($prenom) . ". Inscription confirmée !";
-
 header('Location: index.php');
 exit;
 ?>

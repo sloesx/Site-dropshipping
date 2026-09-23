@@ -1,8 +1,6 @@
 <?php include('header.php'); ?>
-
     <main class="container contenu-page my-5">
         <h2 class="titre-section text-center mb-4">Se connecter</h2>
-        
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card carte-formulaire shadow-sm">
@@ -32,5 +30,4 @@
             </div>
         </div>
     </main>
-
 <?php include('footer.php'); ?>
