@@ -8,7 +8,7 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "SELECT * FROM Articles"; 
+    $sql = "SELECT * FROM articles"; 
     $result = $conn->query($sql);
 ?>
     <header class="entete-page bg-light p-5 text-center">
@@ -34,7 +34,15 @@
                             <?php echo number_format($produit['article_prix_unitaire_HT'], 2, ',', ' '); ?> € HT
                         </p>
                         
-                        <a href="#" class="btn btn-primary bouton-detail mt-auto">Ajouter au panier</a>
+                        <form action="panier_traitement.php" method="POST" class="mt-auto">
+                            <input type="hidden" name="action" value="ajouter">
+                            <input type="hidden" name="article_ref" value="<?php echo $produit['article_ref']; ?>">
+                            
+                            <div class="input-group">
+                                <input type="number" name="quantite" class="form-control" value="1" min="1" required>
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -45,5 +53,40 @@
     </main>
 <?php
     $conn->close();
-?>
+?>  
+<script>
+document.querySelectorAll('form[action="panier_traitement.php"]').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerText;
+
+        fetch('panier_traitement.php', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            const panierLink = document.getElementById('lien-panier');
+            if (panierLink) {
+                panierLink.innerHTML = `Panier <span class="badge bg-danger">${data.total}</span>`;
+            }
+
+            submitBtn.innerText = 'Ajouté !';
+            submitBtn.classList.replace('btn-primary', 'btn-success');
+            setTimeout(() => {
+                submitBtn.innerText = originalText;
+                submitBtn.classList.replace('btn-success', 'btn-primary');
+            }, 1000);
+        })
+        .catch(err => console.error("Erreur panier:", err));
+    });
+});
+</script>
 <?php include('footer.php'); ?>
