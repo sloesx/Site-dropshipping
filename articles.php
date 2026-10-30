@@ -1,15 +1,8 @@
-<?php include('header.php'); ?>
-<?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "ecom";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+<?php 
+include('config/header.php');
+require_once('config/db.php');
     $sql = "SELECT * FROM articles"; 
-    $result = $conn->query($sql);
+    $result = $pdo->query($sql);
 ?>
 <header class="entete-page bg-light p-5 text-center">
     <h1 class="titre-principal">Notre Catalogue</h1>
@@ -18,15 +11,15 @@
 <main class="container contenu-page my-5">
     <div class="row liste-produits">
         <?php
-        while($produit = $result->fetch_assoc()) {
+        while($produit = $result->fetch(PDO::FETCH_ASSOC)) {
         ?>
         <div class="col-md-4 mb-4">
-            <div class="card carte-produit h-100 shadow-sm"><a href="detail.php?id=<?php echo $produit['article_ref']; ?>">
+            <div class="card carte-produit h-100 shadow-sm"><a href="article.php?id=<?php echo $produit['article_ref']; ?>">
                     <img src="<?php echo $produit['article_img']; ?>" class="card-img-top image-produit" alt="<?php echo $produit['article_nom']; ?>" style="height: 250px; object-fit: contain; padding: 10px;"> 
                 </a>
                 <div class="card-body corps-carte d-flex flex-column">
                     <h5 class="card-title nom-produit">
-                        <a href="detail.php?id=<?php echo $produit['article_ref']; ?>" class="text-dark text-decoration-none">
+                        <a href="article.php?id=<?php echo $produit['article_ref']; ?>" class="text-dark text-decoration-none">
                             <?php echo $produit['article_nom']; ?>
                         </a>
                     </h5>
@@ -35,7 +28,7 @@
                         <p class="card-text text-primary fw-bold fs-5 mb-2 text-center">
                             <?php echo number_format($produit['article_prix_unitaire_HT'], 2, ',', ' '); ?> € HT
                         </p>
-                        <a href="detail.php?id=<?php echo $produit['article_ref']; ?>" class="btn btn-outline-secondary btn-sm w-100 mb-2">Voir les détails</a>
+                        <a href="article.php?id=<?php echo $produit['article_ref']; ?>" class="btn btn-outline-secondary btn-sm w-100 mb-2">Voir les détails</a>
                         <form action="panier_traitement.php" method="POST">
                             <input type="hidden" name="action" value="ajouter">
                             <input type="hidden" name="article_ref" value="<?php echo $produit['article_ref']; ?>">
@@ -55,7 +48,7 @@
     </div>
 </main>
 <?php
-    $conn->close();
+    $pdo = null; 
 ?>  
 <script>
 document.querySelectorAll('form[action="panier_traitement.php"]').forEach(form => {
@@ -88,4 +81,4 @@ document.querySelectorAll('form[action="panier_traitement.php"]').forEach(form =
     });
 });
 </script>
-<?php include('footer.php'); ?>
+<?php include('config/footer.php'); ?>

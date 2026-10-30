@@ -1,15 +1,10 @@
-<?php include('header.php'); ?>
+<?php include('config/header.php'); ?>
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "ecom";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    require_once('config/db.php');
     $sql = "SELECT * FROM Articles LIMIT 3"; 
-    $result = $conn->query($sql);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <header class="bg-light p-5 text-center">
         <h1>Bienvenue sur The Pump Room<?php if(isset($_SESSION['client_prenom'])) { echo ", " . htmlspecialchars($_SESSION['client_prenom']); } ?></h1>
@@ -27,18 +22,18 @@
         <h2 class="text-center mb-4">Nos Produits Phares</h2>
         <div class="row">
             <?php
-            while($produit = $result->fetch_assoc()) {
+            foreach($result as $produit) {
             ?>
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <img src="<?php echo $produit['article_img']; ?>" class="card-img-top" alt="<?php echo $produit['article_nom']; ?>" style="height: 250px; object-fit: contain; padding: 10px;">
+                    <img src="<?php echo $produit['article_img']; ?>" class="card-img-top image-produit" alt="<?php echo $produit['article_nom']; ?>" class="card-img-top" alt="<?php echo $produit['article_nom']; ?>" style="height: 250px; object-fit: contain; padding: 10px;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title"><?php echo $produit['article_nom']; ?></h5>
                         <p class="card-text flex-grow-1"><?php echo $produit['article_description']; ?></p>
                         <p class="card-text text-primary fw-bold fs-5 mb-3">
                             <?php echo number_format($produit['article_prix_unitaire_HT'], 2, ',', ' '); ?> € HT
                         </p>
-                        <a href="detail.php?id=<?php echo $produit['article_ref']; ?>" class="btn btn-primary mt-auto">Voir les détails</a>
+                        <a href="article.php?id=<?php echo $produit['article_ref']; ?>" class="btn btn-primary mt-auto">Voir les détails</a>
                     </div>
                 </div>
             </div>
@@ -48,6 +43,6 @@
         </div>
     </main>
 <?php
-    $conn->close();
+    $pdo = null;     
 ?>
-<?php include('footer.php'); ?>
+<?php include('config/footer.php'); ?>

@@ -1,39 +1,30 @@
-<?php include('header.php'); ?>
+<?php include('config/header.php'); ?>
 <?php
     if (!isset($_GET['id']) || empty($_GET['id'])) {
         header('Location: articles.php');
         exit;
     }
     $id_article = intval($_GET['id']);
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "ecom";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    $conn->set_charset("utf8mb4");
+    require_once('config/db.php');
     $sql = "SELECT * FROM articles WHERE article_ref = ?"; 
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id_article);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows === 0) {
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id_article]);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (count($result) === 0) {
         echo "<main class='container my-5 text-center'>";
         echo "<h2>Article introuvable</h2>";
         echo "<a href='articles.php' class='btn btn-primary mt-3'>Retour au catalogue</a>";
         echo "</main>";
-        include('footer.php');
+        include('config/footer.php');
         exit;
     }
-    $produit = $result->fetch_assoc();
+    $produit = $result[0];
 ?>
 <main class="container my-5">
     <div class="row">
         <div class="col-md-6 mb-4 text-center">
             <div class="card shadow-sm p-3">
-                <img src="<?php echo $produit['article_img']; ?>" class="img-fluid" alt="<?php echo $produit['article_nom']; ?>" style="max-height: 400px; object-fit: contain;">
+                <img src="<?php echo $produit['article_img']; ?>" class="card-img-top image-produit" alt="<?php echo $produit['article_nom']; ?>" class="img-fluid" alt="<?php echo $produit['article_nom']; ?>" style="max-height: 400px; object-fit: contain;">
             </div>
         </div>
         <div class="col-md-6 d-flex flex-column justify-content-center">
@@ -57,8 +48,7 @@
     </div>
 </main>
 <?php
-    $stmt->close();
-    $conn->close();
+    $pdo = null;
 ?>  
 <script>
 document.querySelectorAll('form[action="panier_traitement.php"]').forEach(form => {
@@ -91,4 +81,4 @@ document.querySelectorAll('form[action="panier_traitement.php"]').forEach(form =
     });
 });
 </script>
-<?php include('footer.php'); ?>
+<?php include('config/footer.php'); ?>

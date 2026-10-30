@@ -1,4 +1,4 @@
-<?php include('header.php'); ?>
+<?php include('config/header.php'); ?>
     <main class="container my-5">
         <div class="row justify-content-center">
             <div class="col-md-10">
@@ -32,4 +32,4 @@
             </div>
         </div>
     </main>
-<?php include('footer.php'); ?>
+<?php include('config/footer.php'); ?>

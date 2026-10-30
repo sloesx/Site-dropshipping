@@ -18,13 +18,13 @@
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
   `article_ref` int NOT NULL AUTO_INCREMENT,
-  `article_marque` varchar(50) DEFAULT NULL,
-  `article_nom` varchar(50) NOT NULL,
-  `article_description` text NOT NULL,
+  `article_marque` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `article_nom` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `article_description` text COLLATE utf8mb4_general_ci NOT NULL,
   `article_prix_unitaire_HT` decimal(10,2) NOT NULL,
   `article_poids` decimal(10,2) NOT NULL,
   `article_stock` int NOT NULL DEFAULT '0',
-  `article_img` varchar(255) NOT NULL,
+  `article_img` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `id_categorie` int NOT NULL,
   `id_fournisseur` int NOT NULL,
   PRIMARY KEY (`article_ref`),
@@ -36,47 +36,47 @@ CREATE TABLE IF NOT EXISTS `articles` (
 
 -- Listage des données de la table ecom.articles : ~34 rows (environ)
 INSERT INTO `articles` (`article_ref`, `article_marque`, `article_nom`, `article_description`, `article_prix_unitaire_HT`, `article_poids`, `article_stock`, `article_img`, `id_categorie`, `id_fournisseur`) VALUES
-	(1, 'Optimum Nutrition', 'Whey Protein Isolate (2kg)', 'Une protéine de haute qualité à absorption rapide, idéale pour la récupération musculaire après vos séances de force intenses.', 49.99, 2.00, 100, 'src/prot.jpg', 1, 1),
-	(2, 'Cellucor', 'Pre-Workout "Explosive Energy"', 'Boostez votre concentration et votre endurance avec cette formule enrichie en caféine et bêta-alanine pour des entraînements sans limite.', 29.99, 0.30, 50, 'src/preworkout.jpg', 1, 1),
-	(3, 'Bowflex', 'Haltères Réglables (24kg)', 'Gagnez de la place avec ce système d\'haltères innovant permettant de varier la charge de 2,5 à 24 kg en un seul clic.', 199.99, 24.00, 20, 'src/halteres.webp', 2, 2),
-	(4, 'Inzer', 'Ceinture de Force en Cuir', 'Soutien lombaire maximal pour vos Squats et Soulevés de terre, conçue en cuir véritable pour une durabilité exceptionnelle.', 45.00, 0.80, 30, 'src/ceinture_force.webp', 2, 2),
-	(5, 'Gymshark', 'T-Shirt "Oversize" Pump Cover', 'Un t-shirt en coton lourd avec une coupe large moderne, parfait pour vos débuts de séance ou pour un look sportswear au quotidien.', 25.00, 0.20, 150, 'src/tshirt.webp', 3, 7),
-	(6, 'Sveltus', 'Pack de Bandes de Résistance', 'Cinq niveaux de résistance différents pour vos échauffements, vos exercices de mobilité ou pour intensifier vos séances à la maison.', 19.99, 0.50, 80, 'src/bandes_res.jpg', 2, 2),
-	(7, 'Optimum Nutrition', 'Serious Mass Gainer (5kg)', 'Idéal pour la prise de masse extrême, riche en glucides complexes et protéines.', 55.00, 5.00, 40, 'src/gainer.webp', 1, 4),
-	(8, 'MyProteine', 'Créatine Monohydrate (500g)', 'Améliore les performances lors d\'efforts intenses et courts. Poudre pure sans arôme.', 15.99, 0.50, 200, 'src/creatine.webp', 1, 5),
-	(9, 'Scitec Nutrition', 'BCAA Xpress (280g)', 'Acides aminés ramifiés pour maximiser la récupération et réduire la fatigue musculaire.', 22.50, 0.28, 150, 'src/bcaa.webp', 1, 10),
-	(10, 'FitNutrition', 'Barre Protéinée Chocolat (Boîte de 12)', 'L\'en-cas parfait post-entraînement, 20g de protéines par barre et faible en sucres.', 24.99, 0.72, 80, 'src/barres.webp', 1, 1),
-	(11, 'Optimum Nutrition', 'ZMA Récupération Nocturne', 'Complexe de zinc et magnésium pour optimiser le sommeil et la récupération hormonale.', 19.90, 0.15, 120, 'src/zma.webp', 1, 4),
-	(12, 'Scitec Nutrition', '100% Casein Complex (920g)', 'Protéine à assimilation lente, idéale à consommer avant le coucher pour nourrir le muscle toute la nuit.', 32.99, 0.92, 60, 'src/casein.webp', 1, 10),
-	(13, 'Rogue Fitness', 'Barre Olympique d\'Haltérophilie (20kg)', 'Barre professionnelle avec roulements à aiguilles, supporte jusqu\'à 700kg de charge.', 299.00, 20.00, 15, 'src/barre_oly.webp', 2, 6),
-	(14, 'Eleiko', 'Disque Bumper (20kg)', 'Disque olympique en caoutchouc haute densité, conçu pour les drops en haltérophilie.', 89.00, 20.00, 50, 'src/bumper_20.jpg', 2, 8),
-	(15, 'Eleiko', 'Disque Bumper (10kg)', 'Disque olympique standard pour vos barres de CrossFit et d\'haltérophilie.', 49.00, 10.00, 50, 'src/bumper_10.jpg', 2, 8),
-	(16, 'Gorilla Sports', 'Kettlebell en Fonte (16kg)', 'Outil polyvalent pour le renforcement musculaire et le cardio.', 39.99, 16.00, 30, 'src/kettlebell_16.webp', 2, 3),
-	(17, 'Gorilla Sports', 'Kettlebell en Fonte (24kg)', 'Kettlebell lourd pour les pratiquants avancés. Revêtement anti-corrosion.', 59.99, 24.00, 20, 'src/kettlebell_24.webp', 2, 3),
-	(18, 'Decathlon Pro', 'Banc de Musculation Inclinable', 'Banc robuste avec 7 niveaux d\'inclinaison pour travailler tous les angles des pectoraux.', 120.00, 15.00, 10, 'src/banc.webp', 2, 9),
-	(19, 'IronEquipment', 'Rack à Squat Réglable', 'Chandelles indépendantes pour Squats et Développé Couché. Gain de place maximal.', 149.99, 25.00, 8, 'src/rack.webp', 2, 2),
-	(20, 'Gymshark', 'Short de Training Léger', 'Liberté de mouvement totale pour vos séances jambes. Tissu respirant.', 35.00, 0.15, 100, 'src/short.jpg', 3, 7),
-	(21, 'Gymshark', 'Débardeur Stringer "Golden Era"', 'Le classique du bodybuilding pour mettre en valeur votre dos et vos épaules.', 22.00, 0.10, 120, 'src/stringer.webp', 3, 7),
-	(22, 'Decathlon Pro', 'T-Shirt Compression Manches Longues', 'Maintien musculaire optimal et évacuation de la transpiration.', 19.99, 0.15, 90, 'src/compression.webp', 3, 9),
-	(23, 'FitNutrition', 'Sweat à Capuche d\'Entraînement', 'Sweat épais pour vous garder au chaud pendant l\'échauffement.', 45.00, 0.40, 60, 'src/sweat.webp', 3, 1),
-	(24, 'Rogue Fitness', 'Chaussettes Hautes Deadlift', 'Protection des tibias garantie lors de vos soulevés de terre lourds.', 14.50, 0.05, 200, 'src/chaussettes.webp', 3, 6),
-	(25, 'Gymshark', 'Jogging de Récupération Slim', 'Confort absolu après l\'effort avec une coupe ajustée moderne.', 40.00, 0.35, 75, 'src/jogging.webp', 3, 7),
-	(26, 'MyProteine', 'Shaker Pro (700ml) avec Grille', 'Mélange garanti sans grumeaux, plastique sans BPA.', 6.99, 0.10, 300, 'src/shaker.jpg', 4, 5),
-	(27, 'IronEquipment', 'Sangles de Tirage (Lifting Straps)', 'Sécurisez votre prise lors des exercices de tirage lourd pour soulager les avant-bras.', 12.50, 0.05, 150, 'src/sangles.webp', 4, 2),
-	(28, 'Rogue Fitness', 'Protège-Poignets Élastiques', 'Soutien articulaire indispensable pour vos développés couchés et militaires.', 18.00, 0.08, 120, 'src/poignets.webp', 4, 6),
-	(29, 'Gorilla Sports', 'Magnésie Liquide (Flacon 250ml)', 'Grip parfait et autorisé dans les salles qui interdisent la magnésie en poudre.', 9.90, 0.25, 80, 'src/magnesie.webp', 4, 3),
-	(30, 'Decathlon Pro', 'Serviette Microfibre Salle de Sport', 'Séchage ultra-rapide et traitement anti-odeur. Compacte pour le sac de sport.', 5.50, 0.10, 400, 'src/serviette.webp', 4, 9),
-	(31, 'FitNutrition', 'Gourde XXL (2.2 Litres)', 'Ne soyez plus jamais à court d\'eau pendant vos longues séances.', 14.99, 0.20, 90, 'src/gourde.webp', 4, 1),
-	(32, 'Gorilla Sports', 'Gilet Lesté Réglable (10kg)', 'Intensifiez vos tractions, dips et exercices au poids de corps.', 59.90, 10.00, 25, 'src/gilet.webp', 5, 3),
-	(33, 'Rogue Fitness', 'Battle Rope (Corde Ondulatoire 15m)', 'Conditionnement métabolique extrême pour brûler les graisses.', 115.00, 12.00, 15, 'src/battlerope.webp', 5, 6),
-	(34, 'Eleiko', 'Sandbag Strongman (Jusqu\'à 50kg)', 'Sac de sable renforcé pour l\'entraînement fonctionnel et le Strongman. Vendu vide.', 75.00, 1.50, 30, 'src/sandbag.webp', 5, 8);
+	(1, 'Optimum Nutrition', 'Whey Protein Isolate (2kg)', 'Une protéine de haute qualité à absorption rapide, idéale pour la récupération musculaire après vos séances de force intenses.', 49.99, 2.00, 100, 'img/articles/prot.jpg', 1, 1),
+	(2, 'Cellucor', 'Pre-Workout "Explosive Energy"', 'Boostez votre concentration et votre endurance avec cette formule enrichie en caféine et bêta-alanine pour des entraînements sans limite.', 29.99, 0.30, 50, 'img/articles/preworkout.jpg', 1, 1),
+	(3, 'Bowflex', 'Haltères Réglables (24kg)', 'Gagnez de la place avec ce système d\'haltères innovant permettant de varier la charge de 2,5 à 24 kg en un seul clic.', 199.99, 24.00, 20, 'img/articles/halteres.webp', 2, 2),
+	(4, 'Inzer', 'Ceinture de Force en Cuir', 'Soutien lombaire maximal pour vos Squats et Soulevés de terre, conçue en cuir véritable pour une durabilité exceptionnelle.', 45.00, 0.80, 30, 'img/articles/ceinture_force.webp', 2, 2),
+	(5, 'Gymshark', 'T-Shirt "Oversize" Pump Cover', 'Un t-shirt en coton lourd avec une coupe large moderne, parfait pour vos débuts de séance ou pour un look sportswear au quotidien.', 25.00, 0.20, 150, 'img/articles/tshirt.webp', 3, 7),
+	(6, 'Sveltus', 'Pack de Bandes de Résistance', 'Cinq niveaux de résistance différents pour vos échauffements, vos exercices de mobilité ou pour intensifier vos séances à la maison.', 19.99, 0.50, 80, 'img/articles/bandes_res.jpg', 2, 2),
+	(7, 'Optimum Nutrition', 'Serious Mass Gainer (5kg)', 'Idéal pour la prise de masse extrême, riche en glucides complexes et protéines.', 55.00, 5.00, 40, 'img/articles/gainer.webp', 1, 4),
+	(8, 'MyProteine', 'Créatine Monohydrate (500g)', 'Améliore les performances lors d\'efforts intenses et courts. Poudre pure sans arôme.', 15.99, 0.50, 200, 'img/articles/creatine.webp', 1, 5),
+	(9, 'Scitec Nutrition', 'BCAA Xpress (280g)', 'Acides aminés ramifiés pour maximiser la récupération et réduire la fatigue musculaire.', 22.50, 0.28, 150, 'img/articles/bcaa.webp', 1, 10),
+	(10, 'FitNutrition', 'Barre Protéinée Chocolat (Boîte de 12)', 'L\'en-cas parfait post-entraînement, 20g de protéines par barre et faible en sucres.', 24.99, 0.72, 80, 'img/articles/barres.webp', 1, 1),
+	(11, 'Optimum Nutrition', 'ZMA Récupération Nocturne', 'Complexe de zinc et magnésium pour optimiser le sommeil et la récupération hormonale.', 19.90, 0.15, 120, 'img/articles/zma.webp', 1, 4),
+	(12, 'Scitec Nutrition', '100% Casein Complex (920g)', 'Protéine à assimilation lente, idéale à consommer avant le coucher pour nourrir le muscle toute la nuit.', 32.99, 0.92, 60, 'img/articles/casein.webp', 1, 10),
+	(13, 'Rogue Fitness', 'Barre Olympique d\'Haltérophilie (20kg)', 'Barre professionnelle avec roulements à aiguilles, supporte jusqu\'à 700kg de charge.', 299.00, 20.00, 15, 'img/articles/barre_oly.webp', 2, 6),
+	(14, 'Eleiko', 'Disque Bumper (20kg)', 'Disque olympique en caoutchouc haute densité, conçu pour les drops en haltérophilie.', 89.00, 20.00, 50, 'img/articles/bumper_20.jpg', 2, 8),
+	(15, 'Eleiko', 'Disque Bumper (10kg)', 'Disque olympique standard pour vos barres de CrossFit et d\'haltérophilie.', 49.00, 10.00, 50, 'img/articles/bumper_10.jpg', 2, 8),
+	(16, 'Gorilla Sports', 'Kettlebell en Fonte (16kg)', 'Outil polyvalent pour le renforcement musculaire et le cardio.', 39.99, 16.00, 30, 'img/articles/kettlebell_16.webp', 2, 3),
+	(17, 'Gorilla Sports', 'Kettlebell en Fonte (24kg)', 'Kettlebell lourd pour les pratiquants avancés. Revêtement anti-corrosion.', 59.99, 24.00, 20, 'img/articles/kettlebell_24.webp', 2, 3),
+	(18, 'Decathlon Pro', 'Banc de Musculation Inclinable', 'Banc robuste avec 7 niveaux d\'inclinaison pour travailler tous les angles des pectoraux.', 120.00, 15.00, 10, 'img/articles/banc.webp', 2, 9),
+	(19, 'IronEquipment', 'Rack à Squat Réglable', 'Chandelles indépendantes pour Squats et Développé Couché. Gain de place maximal.', 149.99, 25.00, 8, 'img/articles/rack.webp', 2, 2),
+	(20, 'Gymshark', 'Short de Training Léger', 'Liberté de mouvement totale pour vos séances jambes. Tissu respirant.', 35.00, 0.15, 100, 'img/articles/short.jpg', 3, 7),
+	(21, 'Gymshark', 'Débardeur Stringer "Golden Era"', 'Le classique du bodybuilding pour mettre en valeur votre dos et vos épaules.', 22.00, 0.10, 120, 'img/articles/stringer.webp', 3, 7),
+	(22, 'Decathlon Pro', 'T-Shirt Compression Manches Longues', 'Maintien musculaire optimal et évacuation de la transpiration.', 19.99, 0.15, 90, 'img/articles/compression.webp', 3, 9),
+	(23, 'FitNutrition', 'Sweat à Capuche d\'Entraînement', 'Sweat épais pour vous garder au chaud pendant l\'échauffement.', 45.00, 0.40, 60, 'img/articles/sweat.webp', 3, 1),
+	(24, 'Rogue Fitness', 'Chaussettes Hautes Deadlift', 'Protection des tibias garantie lors de vos soulevés de terre lourds.', 14.50, 0.05, 200, 'img/articles/chaussettes.webp', 3, 6),
+	(25, 'Gymshark', 'Jogging de Récupération Slim', 'Confort absolu après l\'effort avec une coupe ajustée moderne.', 40.00, 0.35, 75, 'img/articles/jogging.webp', 3, 7),
+	(26, 'MyProteine', 'Shaker Pro (700ml) avec Grille', 'Mélange garanti sans grumeaux, plastique sans BPA.', 6.99, 0.10, 300, 'img/articles/shaker.jpg', 4, 5),
+	(27, 'IronEquipment', 'Sangles de Tirage (Lifting Straps)', 'Sécurisez votre prise lors des exercices de tirage lourd pour soulager les avant-bras.', 12.50, 0.05, 150, 'img/articles/sangles.webp', 4, 2),
+	(28, 'Rogue Fitness', 'Protège-Poignets Élastiques', 'Soutien articulaire indispensable pour vos développés couchés et militaires.', 18.00, 0.08, 120, 'img/articles/poignets.webp', 4, 6),
+	(29, 'Gorilla Sports', 'Magnésie Liquide (Flacon 250ml)', 'Grip parfait et autorisé dans les salles qui interdisent la magnésie en poudre.', 9.90, 0.25, 80, 'img/articles/magnesie.webp', 4, 3),
+	(30, 'Decathlon Pro', 'Serviette Microfibre Salle de Sport', 'Séchage ultra-rapide et traitement anti-odeur. Compacte pour le sac de sport.', 5.50, 0.10, 400, 'img/articles/serviette.webp', 4, 9),
+	(31, 'FitNutrition', 'Gourde XXL (2.2 Litres)', 'Ne soyez plus jamais à court d\'eau pendant vos longues séances.', 14.99, 0.20, 90, 'img/articles/gourde.webp', 4, 1),
+	(32, 'Gorilla Sports', 'Gilet Lesté Réglable (10kg)', 'Intensifiez vos tractions, dips et exercices au poids de corps.', 59.90, 10.00, 25, 'img/articles/gilet.webp', 5, 3),
+	(33, 'Rogue Fitness', 'Battle Rope (Corde Ondulatoire 15m)', 'Conditionnement métabolique extrême pour brûler les graisses.', 115.00, 12.00, 15, 'img/articles/battlerope.webp', 5, 6),
+	(34, 'Eleiko', 'Sandbag Strongman (Jusqu\'à 50kg)', 'Sac de sable renforcé pour l\'entraînement fonctionnel et le Strongman. Vendu vide.', 75.00, 1.50, 30, 'img/articles/sandbag.webp', 5, 8);
 
 -- Listage de la structure de table ecom. categories
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `categorie_id` int NOT NULL AUTO_INCREMENT,
-  `categorie_nom` varchar(50) NOT NULL,
-  `categorie_description` text,
+  `categorie_nom` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `categorie_description` text COLLATE utf8mb4_general_ci,
   PRIMARY KEY (`categorie_id`),
   UNIQUE KEY `categorie_nom` (`categorie_nom`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -93,21 +93,21 @@ INSERT INTO `categories` (`categorie_id`, `categorie_nom`, `categorie_descriptio
 DROP TABLE IF EXISTS `clients`;
 CREATE TABLE IF NOT EXISTS `clients` (
   `client_id` int NOT NULL AUTO_INCREMENT,
-  `client_nom` varchar(50) NOT NULL,
-  `client_prenom` varchar(50) NOT NULL,
-  `client_email` varchar(255) NOT NULL,
-  `client_adresse_livraison` varchar(100) NOT NULL,
-  `client_complement_adresse` varchar(100) DEFAULT NULL,
-  `client_code_postal` varchar(5) NOT NULL,
-  `client_ville` varchar(50) NOT NULL,
-  `client_pays` varchar(50) NOT NULL,
-  `client_mot_de_passe` varchar(255) NOT NULL,
-  `client_telephone` varchar(20) NOT NULL,
+  `client_nom` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `client_prenom` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `client_email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `client_adresse_livraison` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `client_complement_adresse` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `client_code_postal` varchar(5) COLLATE utf8mb4_general_ci NOT NULL,
+  `client_ville` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `client_pays` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `client_mot_de_passe` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `client_telephone` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`client_id`),
   UNIQUE KEY `client_email` (`client_email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Listage des données de la table ecom.clients : ~2 rows (environ)
+-- Listage des données de la table ecom.clients : ~0 rows (environ)
 INSERT INTO `clients` (`client_id`, `client_nom`, `client_prenom`, `client_email`, `client_adresse_livraison`, `client_complement_adresse`, `client_code_postal`, `client_ville`, `client_pays`, `client_mot_de_passe`, `client_telephone`) VALUES
 	(1, 'm', 'e', 'e@gmail.com', 'qzdqzdqzd', '2', '54520', 'e', 'France', '3f79bb7b435b05321651daefd374cdc681dc06faa65e374e38337b88ca046dea', '0773853186'),
 	(4, 'm', 'e', 't@gmail.com', 'qzdqzdqzd', '2', '54520', 'e', 'France', 'e3b98a4da31a127d4bde6e43033f66ba274cab0eb7eb1c70ec41402bf6273dd8', '0773853186'),
@@ -119,7 +119,7 @@ DROP TABLE IF EXISTS `commandes`;
 CREATE TABLE IF NOT EXISTS `commandes` (
   `commande_numero` int NOT NULL AUTO_INCREMENT,
   `commande_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `commande_status` enum('expedie','en_attente','livre','annule') NOT NULL DEFAULT 'en_attente',
+  `commande_status` enum('expedie','en_attente','livre','annule') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'en_attente',
   `commande_montant` decimal(10,2) NOT NULL,
   `id_client` int NOT NULL,
   PRIMARY KEY (`commande_numero`),
@@ -147,8 +147,8 @@ CREATE TABLE IF NOT EXISTS `contient` (
 DROP TABLE IF EXISTS `fournisseurs`;
 CREATE TABLE IF NOT EXISTS `fournisseurs` (
   `fournisseur_id` int NOT NULL AUTO_INCREMENT,
-  `fournisseur_societe` varchar(50) NOT NULL,
-  `fournisseur_telephone` varchar(20) NOT NULL,
+  `fournisseur_societe` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `fournisseur_telephone` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`fournisseur_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

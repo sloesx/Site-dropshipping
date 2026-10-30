@@ -1,5 +1,5 @@
 <?php
-include('header.php');
+include('config/header.php');
 
 $panier = $_SESSION['panier'] ?? [];
 $total_ht = 0;
@@ -14,15 +14,13 @@ $total_ht = 0;
         </div>
     <?php else: ?>
         <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "ecom";
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        require_once('config/db.php');
 
         $refs = implode(',', array_map('intval', array_keys($panier)));
         $sql = "SELECT * FROM articles WHERE article_ref IN ($refs)";
-        $result = $conn->query($sql);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
         <table class="table align-middle">
@@ -37,7 +35,7 @@ $total_ht = 0;
                 </tr>
             </thead>
             <tbody>
-                <?php while ($article = $result->fetch_assoc()): 
+                <?php foreach ($result as $article): 
                     $ref = $article['article_ref'];
                     $qte = $panier[$ref];
                     $sous_total = $article['article_prix_unitaire_HT'] * $qte;
@@ -45,7 +43,7 @@ $total_ht = 0;
                 ?>
                 <tr>
                     <td>
-                        <img src="<?php echo $article['article_img']; ?>" alt="" style="width: 50px; height: 50px; object-fit: cover;">
+                        <img src="<?php echo $article['article_img']; ?>" class="card-img-top image-produit" alt="<?php echo $article['article_nom']; ?>" alt="" style="width: 50px; height: 50px; object-fit: cover;">
                     </td>
                     <td><?php echo $article['article_nom']; ?></td>
                     <td><?php echo number_format($article['article_prix_unitaire_HT'], 2, ',', ' '); ?> € HT</td>
@@ -59,7 +57,7 @@ $total_ht = 0;
                         <a href="panier_traitement.php?action=supprimer&article_ref=<?php echo $ref; ?>" class="btn btn-sm btn-danger">Supprimer</a>
                     </td>
                 </tr>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
@@ -72,8 +70,8 @@ $total_ht = 0;
         <div class="d-flex justify-content-between mt-4">
             <a href="articles.php" class="btn btn-secondary">Continuer les achats</a>
         </div>
-        <?php $conn->close(); ?>
+        <?php $pdo = null; ?>
     <?php endif; ?>
 </div>
 
-<?php include('footer.php'); ?>
+<?php include('config/footer.php'); ?>

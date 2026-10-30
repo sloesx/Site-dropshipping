@@ -1,4 +1,4 @@
-<?php include('header.php'); ?>
+<?php include('config/header.php'); ?>
     <main class="container contenu-page my-5">
         <h2 class="titre-section text-center mb-4">Contactez-nous</h2>
         <div class="row justify-content-center">
@@ -39,4 +39,4 @@
         </div>
     </main>
 
-<?php include('footer.php'); ?>
+<?php include('config/footer.php'); ?>
