@@ -57,7 +57,7 @@
                             <div class="row">
                                 <div class="col-md-3 mb-3">
                                     <label for="code_postal" class="form-label">Code Postal</label>
-                                    <input required type="text" class="form-control" id="code_postal" name="code_postal" placeholder="Ex: 75000">
+                                    <input type="text" name="code_postal" placeholder="Ex: 75000" class="form-control" id="code_postal" maxlength="5" minlength="5" pattern="[0-9]{5}" title="Le code postal doit contenir exactement 5 chiffres" required>
                                 </div>
                                 <div class="col-md-5 mb-3">
                                     <label for="ville" class="form-label">Ville</label>
