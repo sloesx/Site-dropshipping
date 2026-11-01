@@ -22,7 +22,7 @@ if (isset($_SESSION['panier']) && is_array($_SESSION['panier'])) {
             <div class="navbar-nav liens-menu">
                 <a class="nav-link <?php if($page_en_cours == 'index.php') { echo 'active'; } ?>" href="index.php">Accueil</a> 
                 <a class="nav-link <?php if($page_en_cours == 'articles.php') { echo 'active'; } ?>" href="articles.php">Nos Produits</a> 
-                <a class="nav-link <?php if($page_en_cours == 'equipe.php') { echo 'active'; } ?>" href="equipe.php">Qui sommes-nous ?</a> 
+                <a class="nav-link <?php if($page_en_cours == 'equipe.php') { echo 'active'; } ?>" href="apropos.php">Qui sommes-nous ?</a> 
                 <a class="nav-link <?php if($page_en_cours == 'contact.php') { echo 'active'; } ?>" href="contact.php">Contact</a>
                 <a id="lien-panier" class="nav-link <?php if($page_en_cours == 'panier.php') { echo 'active'; } ?>" href="panier.php">
                     Panier <?php if ($total_articles_panier > 0) { ?>
