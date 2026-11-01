@@ -51,6 +51,8 @@ $message = "Bonjour " . $prenom . ",\n\n"
 
 $headers = "From: no-reply@thepumproom.fr\r\n" .
            "Reply-To: support@thepumproom.fr\r\n" .
+           "MIME-Version: 1.0\r\n" .
+           "Content-Type: text/plain; charset=utf-8\r\n" .
            "X-Mailer: PHP/" . phpversion();
 
 mail($to, $subject, $message, $headers);
